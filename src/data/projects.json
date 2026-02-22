@@ -1,0 +1,22 @@
+{
+    "projects": [
+        {
+            "id": "project-sonna",
+            "title": "SonnaLagoda",
+            "shortTitle": "SL",
+            "description": "Premium bedding e-commerce store with full-stack implementation.",
+            "fullDescription": "Premium bedding e-commerce store with full-stack implementation. Features include product catalog with filtering, shopping cart functionality, user authentication system, admin panel for content management, and order processing.",
+            "tech": ["Next.js", "React", "NestJS", "PostgreSQL", "Prisma", "Docker", "TypeScript"],
+            "features": ["Product catalog", "Shopping cart", "User authentication", "Admin panel", "Responsive design"]
+        },
+        {
+            "id": "project-vlc",
+            "title": "VLC AI Translate",
+            "shortTitle": "VLC",
+            "description": "CLI tool for translating subtitles using multiple translation providers.",
+            "fullDescription": "Command-line tool for translating subtitles using multiple AI and translation providers. Supports SRT and VTT formats.",
+            "tech": ["Node.js", "JavaScript", "Google Gemini", "DeepL API", "Microsoft Translate", "Commander.js", "CLI"],
+            "features": ["Multiple providers", "Batch processing", "SRT and VTT formats", "Progress tracking", "Configurable settings"]
+        }
+    ]
+}

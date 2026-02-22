@@ -1,5 +1,5 @@
-// Main JavaScript file (Lab 4)
-// DOM manipulation, events, form validation
+// Main JavaScript file (Lab 4 & Lab 5)
+// DOM manipulation, events, form validation, AJAX
 
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
@@ -10,7 +10,109 @@ document.addEventListener('DOMContentLoaded', function() {
     const navToggle = document.getElementById('nav-toggle');
     const sections = document.querySelectorAll('section[id]');
     const contactForm = document.getElementById('contact-form');
-    const projectCards = document.querySelectorAll('.project-card');
+    const projectsGrid = document.getElementById('projects-grid');
+
+    // ===== Lab 5: AJAX - Load Projects =====
+    let projectsData = null;
+
+    async function loadProjects() {
+        try {
+            const response = await fetch('data/projects.json');
+            if (!response.ok) {
+                throw new Error('Failed to load projects');
+            }
+            const data = await response.json();
+            projectsData = data.projects;
+            renderProjects(projectsData);
+            console.log('Projects loaded via AJAX');
+        } catch (error) {
+            console.error('Error loading projects:', error);
+            // Fallback: use inline data if fetch fails
+            projectsData = getDefaultProjects();
+            renderProjects(projectsData);
+        }
+    }
+
+    function getDefaultProjects() {
+        return [
+            {
+                id: 'project-sonna',
+                title: 'SonnaLagoda',
+                shortTitle: 'SL',
+                description: 'Premium bedding e-commerce store with full-stack implementation.',
+                fullDescription: 'Premium bedding e-commerce store with full-stack implementation. Features include product catalog with filtering, shopping cart functionality, user authentication system, admin panel for content management, and order processing.',
+                tech: ['Next.js', 'React', 'NestJS', 'PostgreSQL', 'Prisma', 'Docker', 'TypeScript'],
+                features: ['Product catalog', 'Shopping cart', 'User authentication', 'Admin panel', 'Responsive design']
+            },
+            {
+                id: 'project-vlc',
+                title: 'VLC AI Translate',
+                shortTitle: 'VLC',
+                description: 'CLI tool for translating subtitles using multiple translation providers.',
+                fullDescription: 'Command-line tool for translating subtitles using multiple AI and translation providers. Supports SRT and VTT formats.',
+                tech: ['Node.js', 'JavaScript', 'Google Gemini', 'DeepL API', 'Microsoft Translate', 'Commander.js', 'CLI'],
+                features: ['Multiple providers', 'Batch processing', 'SRT and VTT formats', 'Progress tracking', 'Configurable settings']
+            }
+        ];
+    }
+
+    function renderProjects(projects) {
+        if (!projectsGrid) return;
+
+        projectsGrid.innerHTML = projects.map(project => `
+            <article class="project-card" id="${project.id}" data-project='${JSON.stringify(project)}'>
+                <div class="project-image">
+                    <div class="project-placeholder">${project.shortTitle}</div>
+                </div>
+                <div class="project-info">
+                    <h3>${project.title}</h3>
+                    <p class="project-description">${project.description}</p>
+                    <div class="project-tech">
+                        ${project.tech.map(t => `<span class="tech-tag">${t}</span>`).join('')}
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="btn btn-small project-details-btn">View Details</a>
+                    </div>
+                </div>
+            </article>
+        `).join('');
+
+        // Attach event listeners to new buttons
+        attachProjectListeners();
+    }
+
+    function attachProjectListeners() {
+        document.querySelectorAll('.project-details-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const card = this.closest('.project-card');
+                const project = JSON.parse(card.dataset.project);
+                openProjectModal(project);
+            });
+        });
+    }
+
+    // Load projects on page load
+    loadProjects();
+
+    // ===== Lab 5: AJAX - Form Submission =====
+    async function submitFormAjax(formData) {
+        // Simulate AJAX request (no real backend)
+        return new Promise((resolve, reject) => {
+            // Simulate network delay
+            setTimeout(() => {
+                // Simulate success (90% chance) or failure (10% chance)
+                if (Math.random() > 0.1) {
+                    resolve({
+                        success: true,
+                        message: 'Message sent successfully!'
+                    });
+                } else {
+                    reject(new Error('Server error. Please try again.'));
+                }
+            }, 1000);
+        });
+    }
 
     // ===== Header Shadow on Scroll =====
     function handleHeaderScroll() {
@@ -147,8 +249,8 @@ document.addEventListener('DOMContentLoaded', function() {
             validateField(messageInput, patterns.message, errorMessages.message);
         });
 
-        // Form submit
-        contactForm.addEventListener('submit', function(e) {
+        // Form submit with AJAX (Lab 5)
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
 
             const isNameValid = validateField(nameInput, patterns.name, errorMessages.name);
@@ -156,13 +258,34 @@ document.addEventListener('DOMContentLoaded', function() {
             const isMessageValid = validateField(messageInput, patterns.message, errorMessages.message);
 
             if (isNameValid && isEmailValid && isMessageValid) {
-                showNotification('Form submitted successfully!', 'success');
-                contactForm.reset();
+                // Disable submit button during request
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
 
-                // Remove valid classes
-                [nameInput, emailInput, messageInput].forEach(input => {
-                    input.classList.remove('valid');
-                });
+                try {
+                    // Lab 5: AJAX form submission
+                    const formData = {
+                        name: nameInput.value,
+                        email: emailInput.value,
+                        message: messageInput.value
+                    };
+
+                    const result = await submitFormAjax(formData);
+                    showNotification(result.message, 'success');
+                    contactForm.reset();
+
+                    // Remove valid classes
+                    [nameInput, emailInput, messageInput].forEach(input => {
+                        input.classList.remove('valid');
+                    });
+                } catch (error) {
+                    showNotification(error.message, 'error');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                }
             } else {
                 showNotification('Please fill in all fields correctly', 'error');
             }
@@ -202,7 +325,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
 
-    // ===== Project Modal =====
+    // ===== Project Modal (updated for AJAX - Lab 5) =====
     const modalHTML = `
         <div class="modal" id="project-modal">
             <div class="modal-overlay"></div>
@@ -219,35 +342,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalClose = modal.querySelector('.modal-close');
     const modalOverlay = modal.querySelector('.modal-overlay');
 
-    // Project details buttons
-    projectCards.forEach(card => {
-        const detailsBtn = card.querySelector('.project-details-btn');
-        if (detailsBtn) {
-            detailsBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const title = card.querySelector('h3').textContent;
-                const description = card.querySelector('.project-description').textContent;
-                const techTags = card.querySelectorAll('.tech-tag');
-                const features = card.querySelectorAll('.project-features li');
-
-                modalBody.innerHTML = `
-                    <h2>${title}</h2>
-                    <p class="modal-description">${description}</p>
-                    <h3>Technologies</h3>
-                    <div class="modal-tech">
-                        ${Array.from(techTags).map(t => `<span class="tech-tag">${t.textContent}</span>`).join('')}
-                    </div>
-                    ${features.length > 0 ? `
-                        <h3>Key Features</h3>
-                        <ul class="modal-features">
-                            ${Array.from(features).map(f => `<li>${f.textContent}</li>`).join('')}
-                        </ul>
-                    ` : ''}
-                `;
-                openModal();
-            });
-        }
-    });
+    // Open project modal with data from AJAX
+    function openProjectModal(project) {
+        modalBody.innerHTML = `
+            <h2>${project.title}</h2>
+            <p class="modal-description">${project.fullDescription || project.description}</p>
+            <h3>Technologies</h3>
+            <div class="modal-tech">
+                ${project.tech.map(t => `<span class="tech-tag">${t}</span>`).join('')}
+            </div>
+            <h3>Key Features</h3>
+            <ul class="modal-features">
+                ${project.features.map(f => `<li>${f}</li>`).join('')}
+            </ul>
+        `;
+        openModal();
+    }
 
     function openModal() {
         modal.classList.add('active');
