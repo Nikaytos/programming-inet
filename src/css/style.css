@@ -158,9 +158,20 @@ img {
     color: var(--primary-color);
 }
 
-/* Dropdown Menu */
+/* ===== Dropdown Menu (Lab 3) ===== */
 .dropdown {
     position: relative;
+}
+
+.dropdown-arrow {
+    font-size: 0.7rem;
+    margin-left: 5px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.dropdown:hover .dropdown-arrow {
+    transform: rotate(180deg);
 }
 
 .dropdown-menu {
@@ -175,7 +186,8 @@ img {
     opacity: 0;
     visibility: hidden;
     transform: translateY(10px);
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    z-index: 100;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -188,11 +200,69 @@ img {
     display: block;
     padding: 10px 20px;
     color: var(--text-color);
+    transition: background-color 0.2s ease, padding-left 0.2s ease;
 }
 
 .dropdown-menu li a:hover {
     background-color: var(--bg-secondary);
     color: var(--primary-color);
+    padding-left: 25px;
+    text-decoration: none;
+}
+
+/* ===== Mobile Navigation (Lab 3) ===== */
+.nav-toggle {
+    display: none;
+}
+
+.nav-toggle-label {
+    display: none;
+    cursor: pointer;
+    position: relative;
+    width: 30px;
+    height: 25px;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 3px;
+    background-color: var(--text-color);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.nav-toggle-label span {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.nav-toggle-label span::before {
+    content: '';
+    top: -10px;
+}
+
+.nav-toggle-label span::after {
+    content: '';
+    top: 10px;
+}
+
+/* Hamburger animation */
+.nav-toggle:checked + .nav-toggle-label span {
+    background-color: transparent;
+}
+
+.nav-toggle:checked + .nav-toggle-label span::before {
+    top: 0;
+    transform: rotate(45deg);
+}
+
+.nav-toggle:checked + .nav-toggle-label span::after {
+    top: 0;
+    transform: rotate(-45deg);
 }
 
 /* ===== Hero Section ===== */
@@ -640,8 +710,73 @@ section {
         text-align: center;
     }
 
+    /* Mobile menu (Lab 3) */
+    .nav-toggle-label {
+        display: block;
+    }
+
     .nav-list {
-        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background-color: var(--bg-color);
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+    }
+
+    .nav-toggle:checked ~ .nav-list {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        display: flex;
+    }
+
+    .nav-list li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-list a {
+        display: block;
+        padding: 15px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-list li:last-child a {
+        border-bottom: none;
+    }
+
+    /* Mobile dropdown */
+    .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        background-color: var(--bg-secondary);
+        border-radius: 0;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        transition: max-height 0.3s ease;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        max-height: 200px;
+    }
+
+    .dropdown-menu li a {
+        padding: 12px 20px;
+    }
+
+    .dropdown-menu li a:hover {
+        padding-left: 20px;
     }
 
     section {
