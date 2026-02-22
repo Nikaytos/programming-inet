@@ -48,10 +48,12 @@
     <!-- About Section -->
     <section class="about" id="about">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
+            <!-- Lab 2: inline style for h2 -->
+            <h2 class="section-title" style="letter-spacing: 1px;">About Me</h2>
             <div class="about-content">
-                <p>I'm a Full-Stack Developer with experience in building web applications using modern technologies. Currently working as a Junior Backend NodeJS Developer with a focus on creating scalable and efficient server-side solutions.</p>
-                <p>I have hands-on experience with Angular, NestJS, PostgreSQL, and Docker. Passionate about clean code, best practices, and continuous learning.</p>
+                <!-- Lab 2: inline style for p -->
+                <p style="line-height: 1.8;">I'm a <b style="color: #2563eb;">Full-Stack Developer</b> with experience in building web applications using modern technologies. Currently working as a Junior Backend NodeJS Developer with a focus on creating scalable and efficient server-side solutions.</p>
+                <p>I have hands-on experience with <b>Angular</b>, <b>NestJS</b>, <b>PostgreSQL</b>, and <b>Docker</b>. Passionate about clean code, best practices, and continuous learning.</p>
             </div>
         </div>
     </section>
@@ -259,15 +261,15 @@
                 <form class="contact-form" id="contact-form">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
                     </div>
                     <div class="form-group">
                         <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
+                        <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Send Message</button>
                 </form>
