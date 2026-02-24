@@ -1,314 +1,396 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Nikita Panasov - Junior Backend NodeJS Developer">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Nikita Panasov - Junior Backend NodeJS Developer" />
     <title>Nikita Panasov | Portfolio</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!-- Header -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
+  </head>
+  <body>
     <header class="header">
-        <div class="container">
-            <a href="#" class="logo">NP</a>
-            <nav class="nav">
-                <!-- Mobile menu toggle (Lab 3) -->
-                <input type="checkbox" id="nav-toggle" class="nav-toggle">
-                <label for="nav-toggle" class="nav-toggle-label">
-                    <span></span>
-                </label>
-                <ul class="nav-list">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li class="dropdown">
-                        <a href="#projects">Projects <span class="dropdown-arrow">▼</span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#project-sonna">SonnaLagoda</a></li>
-                            <li><a href="#project-vlc">VLC AI Translate</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
+      <div class="container">
+        <a href="#" class="logo">NP</a>
+        <nav class="nav">
+          <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+          <label for="nav-toggle" class="nav-toggle-label">
+            <span></span>
+          </label>
+          <ul class="nav-list">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#skills-table">Skills Table</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li class="dropdown">
+              <a href="#projects">Projects <span class="dropdown-arrow">▼</span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#project-sonna">SonnaLagoda</a></li>
+                <li><a href="#project-vlc">VLC AI Translate</a></li>
+              </ul>
+            </li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#" id="auth-btn" class="auth-link">Login</a></li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Nikita Panasov</h1>
-                <p class="hero-subtitle">Junior Backend NodeJS Developer</p>
-                <p class="hero-location">Vinnytsia, Ukraine</p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Contact Me</a>
-                    <a href="#projects" class="btn btn-secondary">View Projects</a>
-                </div>
-            </div>
+      <div class="container">
+        <div class="hero-content">
+          <h1>Nikita Panasov</h1>
+          <p class="hero-subtitle">Junior Backend NodeJS Developer</p>
+          <p class="hero-location">Vinnytsia, Ukraine</p>
+          <div class="hero-buttons">
+            <a href="#contact" class="btn btn-primary">Contact Me</a>
+            <a href="#projects" class="btn btn-secondary">View Projects</a>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- About Section -->
     <section class="about" id="about">
-        <div class="container">
-            <!-- Lab 2: inline style for h2 -->
-            <h2 class="section-title" style="letter-spacing: 1px;">About Me</h2>
-            <div class="about-content">
-                <!-- Lab 2: inline style for p -->
-                <p style="line-height: 1.8;">I'm a <b style="color: #2563eb;">Full-Stack Developer</b> with experience in building web applications using modern technologies. Currently working as a Junior Backend NodeJS Developer with a focus on creating scalable and efficient server-side solutions.</p>
-                <p>I have hands-on experience with <b>Angular</b>, <b>NestJS</b>, <b>PostgreSQL</b>, and <b>Docker</b>. Passionate about clean code, best practices, and continuous learning.</p>
-            </div>
+      <div class="container">
+        <h2 class="section-title" style="letter-spacing: 1px">About Me</h2>
+        <div class="about-content">
+          <p style="line-height: 1.8">
+            I'm a <b style="color: #2563eb">Full-Stack Developer</b> with experience in building web
+            applications using modern technologies. Currently working as a Junior Backend NodeJS
+            Developer with a focus on creating scalable and efficient server-side solutions.
+          </p>
+          <p>
+            I have hands-on experience with <b>Angular</b>, <b>NestJS</b>, <b>PostgreSQL</b>, and
+            <b>Docker</b>. Passionate about clean code, best practices, and continuous learning.
+          </p>
         </div>
+      </div>
     </section>
 
-    <!-- Skills Section -->
     <section class="skills" id="skills">
-        <div class="container">
-            <h2 class="section-title">Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Backend</h3>
-                    <ul class="skill-list">
-                        <li>Node.js</li>
-                        <li>NestJS</li>
-                        <li>Express.js</li>
-                        <li>REST APIs</li>
-                        <li>Swagger API</li>
-                        <li>OAuth / JWT</li>
-                        <li>BullMQ</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Frontend</h3>
-                    <ul class="skill-list">
-                        <li>Angular</li>
-                        <li>React / Next.js</li>
-                        <li>Angular Material / PrimeNG</li>
-                        <li>RxJS</li>
-                        <li>TypeScript / JavaScript</li>
-                        <li>HTML / CSS / SASS</li>
-                        <li>Tailwind CSS / Bootstrap</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Database</h3>
-                    <ul class="skill-list">
-                        <li>PostgreSQL</li>
-                        <li>MySQL</li>
-                        <li>MongoDB</li>
-                        <li>Redis</li>
-                        <li>TypeORM</li>
-                        <li>Prisma ORM</li>
-                        <li>Sequelize.js</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>DevOps & Cloud</h3>
-                    <ul class="skill-list">
-                        <li>Docker</li>
-                        <li>Nginx</li>
-                        <li>AWS Lambda / S3</li>
-                        <li>Linux</li>
-                        <li>Git / GitHub / GitLab</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Testing</h3>
-                    <ul class="skill-list">
-                        <li>Jest</li>
-                        <li>Unit Testing</li>
-                        <li>E2E Testing</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Principles & Tools</h3>
-                    <ul class="skill-list">
-                        <li>OOP</li>
-                        <li>SOLID</li>
-                        <li>Design Patterns</li>
-                        <li>Jira / Confluence</li>
-                        <li>CRM Development</li>
-                    </ul>
-                </div>
-            </div>
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h3>Backend</h3>
+            <ul class="skill-list">
+              <li>Node.js</li>
+              <li>NestJS</li>
+              <li>Express.js</li>
+              <li>REST APIs</li>
+              <li>Swagger API</li>
+              <li>OAuth / JWT</li>
+              <li>BullMQ</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h3>Frontend</h3>
+            <ul class="skill-list">
+              <li>Angular</li>
+              <li>React / Next.js</li>
+              <li>Angular Material / PrimeNG</li>
+              <li>RxJS</li>
+              <li>TypeScript / JavaScript</li>
+              <li>HTML / CSS / SASS</li>
+              <li>Tailwind CSS / Bootstrap</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h3>Database</h3>
+            <ul class="skill-list">
+              <li>PostgreSQL</li>
+              <li>MySQL</li>
+              <li>MongoDB</li>
+              <li>Redis</li>
+              <li>TypeORM</li>
+              <li>Prisma ORM</li>
+              <li>Sequelize.js</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h3>DevOps & Cloud</h3>
+            <ul class="skill-list">
+              <li>Docker</li>
+              <li>Nginx</li>
+              <li>AWS Lambda / S3</li>
+              <li>Linux</li>
+              <li>Git / GitHub / GitLab</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h3>Testing</h3>
+            <ul class="skill-list">
+              <li>Jest</li>
+              <li>Unit Testing</li>
+              <li>E2E Testing</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h3>Principles & Tools</h3>
+            <ul class="skill-list">
+              <li>OOP</li>
+              <li>SOLID</li>
+              <li>Design Patterns</li>
+              <li>Jira / Confluence</li>
+              <li>CRM Development</li>
+            </ul>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Experience Section -->
+    <section class="skills-management" id="skills-table">
+      <div class="container">
+        <h2 class="section-title" style="text-transform: uppercase">Skills Management</h2>
+        <div class="admin-panel" id="admin-panel" style="display: none">
+          <h3 style="margin-bottom: 20px">Add New Skill</h3>
+          <form id="add-skill-form" class="add-skill-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="skill-category">Category</label>
+                <input
+                  type="text"
+                  id="skill-category"
+                  name="category"
+                  placeholder="Start typing..."
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="skill-name">Skill Name</label>
+                <input
+                  type="text"
+                  id="skill-name"
+                  name="skillName"
+                  placeholder="e.g., React"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="skill-level">Level (%)</label>
+                <input
+                  type="number"
+                  id="skill-level"
+                  name="level"
+                  min="0"
+                  max="100"
+                  placeholder="85"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary">Add Skill</button>
+            </div>
+          </form>
+        </div>
+        <div class="table-container">
+          <table id="skills-datatable" class="display" style="width: 100%">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Category</th>
+                <th>Skill</th>
+                <th>Level</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
     <section class="experience" id="experience">
-        <div class="container">
-            <h2 class="section-title">Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">Dec 2025 - Present</div>
-                    <div class="timeline-content">
-                        <h3>Junior Backend NodeJS Developer</h3>
-                        <p class="company">Confidential</p>
-                        <p class="work-type">Full-time, Remote</p>
-                        <ul class="responsibilities">
-                            <li>Backend development with Node.js and NestJS</li>
-                            <li>Working with AWS Lambda, S3, MySQL</li>
-                            <li>OAuth implementation and API development</li>
-                            <li>Using Jira and Confluence for project management</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">Apr 2024 - Oct 2025</div>
-                    <div class="timeline-content">
-                        <h3>Full-Stack Developer</h3>
-                        <p class="company">Jestos</p>
-                        <p class="work-type">Full-time, Office</p>
-                        <ul class="responsibilities">
-                            <li>CRM system development using Angular + NestJS</li>
-                            <li>Database design with PostgreSQL and TypeORM</li>
-                            <li>Redis caching implementation</li>
-                            <li>Telegram microservice integration (GramJS)</li>
-                            <li>CI/CD setup with GitLab and Docker</li>
-                        </ul>
-                    </div>
-                </div>
+      <div class="container">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">Dec 2025 - Present</div>
+            <div class="timeline-content">
+              <h3>Junior Backend NodeJS Developer</h3>
+              <p class="company">Confidential</p>
+              <p class="work-type">Full-time, Remote</p>
+              <ul class="responsibilities">
+                <li>Backend development with Node.js and NestJS</li>
+                <li>Working with AWS Lambda, S3, MySQL</li>
+                <li>OAuth implementation and API development</li>
+                <li>Using Jira and Confluence for project management</li>
+              </ul>
             </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">Apr 2024 - Oct 2025</div>
+            <div class="timeline-content">
+              <h3>Full-Stack Developer</h3>
+              <p class="company">Jestos</p>
+              <p class="work-type">Full-time, Office</p>
+              <ul class="responsibilities">
+                <li>CRM system development using Angular + NestJS</li>
+                <li>Database design with PostgreSQL and TypeORM</li>
+                <li>Redis caching implementation</li>
+                <li>Telegram microservice integration (GramJS)</li>
+                <li>CI/CD setup with GitLab and Docker</li>
+              </ul>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Projects Section (Lab 5: loaded via AJAX) -->
     <section class="projects" id="projects">
-        <div class="container">
-            <h2 class="section-title">Projects</h2>
-            <!-- Lab 5: Projects loaded dynamically via fetch -->
-            <div class="projects-grid" id="projects-grid">
-                <!-- SonnaLagoda -->
-                <article class="project-card" id="project-sonna">
-                    <div class="project-image">
-                        <div class="project-placeholder">SL</div>
-                    </div>
-                    <div class="project-info">
-                        <h3>SonnaLagoda</h3>
-                        <p class="project-description">Premium bedding e-commerce store with full-stack implementation. Features product catalog, shopping cart, user authentication, and admin panel.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Next.js</span>
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">NestJS</span>
-                            <span class="tech-tag">PostgreSQL</span>
-                            <span class="tech-tag">Prisma</span>
-                            <span class="tech-tag">Docker</span>
-                            <span class="tech-tag">TypeScript</span>
-                        </div>
-                        <ul class="project-features" style="display: none;">
-                            <li>Product catalog</li>
-                            <li>Shopping cart</li>
-                            <li>User authentication</li>
-                            <li>Admin panel</li>
-                            <li>Responsive design</li>
-                        </ul>
-                        <div class="project-links">
-                            <a href="#" class="btn btn-small project-details-btn">View Details</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- VLC AI Translate -->
-                <article class="project-card" id="project-vlc">
-                    <div class="project-image">
-                        <div class="project-placeholder">VLC</div>
-                    </div>
-                    <div class="project-info">
-                        <h3>VLC AI Translate</h3>
-                        <p class="project-description">CLI tool for translating subtitles using multiple translation providers: Google Gemini, DeepL, and Microsoft Translate. Supports batch processing and various subtitle formats.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">Google Gemini</span>
-                            <span class="tech-tag">DeepL API</span>
-                            <span class="tech-tag">Microsoft Translate</span>
-                            <span class="tech-tag">Commander.js</span>
-                            <span class="tech-tag">CLI</span>
-                        </div>
-                        <ul class="project-features" style="display: none;">
-                            <li>Multiple providers</li>
-                            <li>Batch processing</li>
-                            <li>SRT and VTT formats</li>
-                            <li>Progress tracking</li>
-                            <li>Configurable settings</li>
-                        </ul>
-                        <div class="project-links">
-                            <a href="#" class="btn btn-small project-details-btn">View Details</a>
-                        </div>
-                    </div>
-                </article>
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid" id="projects-grid">
+          <article class="project-card" id="project-sonna">
+            <div class="project-image">
+              <div class="project-placeholder">SL</div>
             </div>
+            <div class="project-info">
+              <h3>SonnaLagoda</h3>
+              <p class="project-description">
+                Premium bedding e-commerce store with full-stack implementation. Features product
+                catalog, shopping cart, user authentication, and admin panel.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">Next.js</span>
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">NestJS</span>
+                <span class="tech-tag">PostgreSQL</span>
+                <span class="tech-tag">Prisma</span>
+                <span class="tech-tag">Docker</span>
+                <span class="tech-tag">TypeScript</span>
+              </div>
+              <ul class="project-features" style="display: none">
+                <li>Product catalog</li>
+                <li>Shopping cart</li>
+                <li>User authentication</li>
+                <li>Admin panel</li>
+                <li>Responsive design</li>
+              </ul>
+              <div class="project-links">
+                <a href="#" class="btn btn-small project-details-btn">View Details</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" id="project-vlc">
+            <div class="project-image">
+              <div class="project-placeholder">VLC</div>
+            </div>
+            <div class="project-info">
+              <h3>VLC AI Translate</h3>
+              <p class="project-description">
+                CLI tool for translating subtitles using multiple translation providers: Google
+                Gemini, DeepL, and Microsoft Translate. Supports batch processing and various
+                subtitle formats.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Google Gemini</span>
+                <span class="tech-tag">DeepL API</span>
+                <span class="tech-tag">Microsoft Translate</span>
+                <span class="tech-tag">Commander.js</span>
+                <span class="tech-tag">CLI</span>
+              </div>
+              <ul class="project-features" style="display: none">
+                <li>Multiple providers</li>
+                <li>Batch processing</li>
+                <li>SRT and VTT formats</li>
+                <li>Progress tracking</li>
+                <li>Configurable settings</li>
+              </ul>
+              <div class="project-links">
+                <a href="#" class="btn btn-small project-details-btn">View Details</a>
+              </div>
+            </div>
+          </article>
         </div>
+      </div>
     </section>
 
-    <!-- Education Section -->
     <section class="education" id="education">
-        <div class="container">
-            <h2 class="section-title">Education</h2>
-            <div class="education-item">
-                <h3>Vinnytsia National Technical University</h3>
-                <p class="degree">Software Engineering</p>
-                <p class="edu-date">Sep 2022 - Present</p>
-            </div>
+      <div class="container">
+        <h2 class="section-title">Education</h2>
+        <div class="education-item">
+          <h3>Vinnytsia National Technical University</h3>
+          <p class="degree">Software Engineering</p>
+          <p class="edu-date">Sep 2022 - Present</p>
         </div>
+      </div>
     </section>
 
-    <!-- Contact Section -->
     <section class="contact" id="contact">
-        <div class="container">
-            <h2 class="section-title">Contact</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <span class="contact-label">Email:</span>
-                        <a href="mailto:nikaytos@gmail.com">nikaytos@gmail.com</a>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-label">Phone:</span>
-                        <a href="tel:+380687911584">+38 (068) 791-15-84</a>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-label">Location:</span>
-                        <span>Vinnytsia, Ukraine</span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-label">LinkedIn:</span>
-                        <a href="https://www.linkedin.com/in/nikita-panasov-902075307/" target="_blank">Nikita Panasov</a>
-                    </div>
-                </div>
-                <!-- Lab 5: Form submitted via AJAX -->
-                <form class="contact-form" id="contact-form">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" placeholder="Your name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
+      <div class="container">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-content">
+          <div class="contact-info">
+            <div class="contact-item">
+              <span class="contact-label">Email:</span>
+              <a href="mailto:nikaytos@gmail.com">nikaytos@gmail.com</a>
             </div>
+            <div class="contact-item">
+              <span class="contact-label">Phone:</span>
+              <a href="tel:+380687911584">+38 (068) 791-15-84</a>
+            </div>
+            <div class="contact-item">
+              <span class="contact-label">Location:</span>
+              <span>Vinnytsia, Ukraine</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-label">LinkedIn:</span>
+              <a href="https://www.linkedin.com/in/nikita-panasov-902075307/" target="_blank"
+                >Nikita Panasov</a
+              >
+            </div>
+          </div>
+          <form class="contact-form" id="contact-form">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="your.email@example.com"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                placeholder="Write your message here..."
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
         </div>
+      </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Nikita Panasov. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="https://www.linkedin.com/in/nikita-panasov-902075307/" target="_blank">LinkedIn</a>
-                <a href="https://github.com/nikaytos" target="_blank">GitHub</a>
-            </div>
+      <div class="container">
+        <p>&copy; 2025 Nikita Panasov. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="https://www.linkedin.com/in/nikita-panasov-902075307/" target="_blank"
+            >LinkedIn</a
+          >
+          <a href="https://github.com/nikaytos" target="_blank">GitHub</a>
         </div>
+      </div>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="js/main.js"></script>
-</body>
+    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  </body>
 </html>

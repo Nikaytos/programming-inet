@@ -1,0 +1,15 @@
+{
+  "skills": [
+    { "id": 1, "category": "Backend", "skill": "Node.js", "level": 90 },
+    { "id": 2, "category": "Backend", "skill": "NestJS", "level": 85 },
+    { "id": 3, "category": "Backend", "skill": "Express.js", "level": 88 },
+    { "id": 4, "category": "Frontend", "skill": "Angular", "level": 85 },
+    { "id": 5, "category": "Frontend", "skill": "React", "level": 75 },
+    { "id": 6, "category": "Frontend", "skill": "TypeScript", "level": 90 },
+    { "id": 7, "category": "Database", "skill": "PostgreSQL", "level": 85 },
+    { "id": 8, "category": "Database", "skill": "MongoDB", "level": 70 },
+    { "id": 9, "category": "DevOps", "skill": "Docker", "level": 80 },
+    { "id": 10, "category": "DevOps", "skill": "Git", "level": 92 }
+  ],
+  "categories": ["Backend", "Frontend", "Database", "DevOps", "Testing", "Tools"]
+}
